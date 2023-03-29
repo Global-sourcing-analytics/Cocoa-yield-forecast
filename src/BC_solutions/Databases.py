@@ -16,12 +16,12 @@ class DatabaseManager:
         # connection to the database
         print(str_uid, str_pwd)
         if trusted_connection and ((str_uid == "" and str_pwd == "") or (str_uid == None and str_pwd == None)):
-            self.conn = pyodbc.connect('driver={ODBC Driver 17 for SQL Server};server=%s;database=%s;Trusted_Connection=yes;' % \
+            self.conn = pyodbc.connect('driver={SQL Server};server=%s;database=%s;Trusted_Connection=yes;' % \
                                 ( str_server, str_database ))
         else:
-            self.conn = pyodbc.connect('driver={ODBC Driver 17 for SQL Server};server=%s;database=%s;uid=%s;pwd=%s' % \
+            self.conn = pyodbc.connect('driver={SQL Server};server=%s;database=%s;uid=%s;pwd=%s' % \
                                 ( str_server, str_database, str_uid, str_pwd ))
-        self.engine = create_engine("mssql+pyodbc://", poolclass=StaticPool, creator=lambda: self.conn)
+        self.engine = create_engine("mssql+pyodbc://", poolclass=StaticPool, creator=lambda: self.conn, fast_executemany=True)
 
         # %% Uploading to database
         @event.listens_for(self.engine, 'before_cursor_execute')
