@@ -1,20 +1,35 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Artificial intelligence methods for cocoa yield forecasting
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+## Overview
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+This repository contains code and notebooks for the master's thesis titled "Artificial intelligence methods for cocoa yield forecasting", which focuses on testing various predictive models for time series forecasting of cocoa pods crop. The project aims to explore different approaches to forecasting and evaluate their performance on real-world time series dataset.
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+## Project Structure
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+The project is organized as follows:
+
+- **Tests** - tests performed during the work
+- **Tests/Data** - tests on loading the data and EDA of agronomic data in profile_report.html
+- **Tests/Models** - tests on various predictive models
+- **src**
+- **src/Data** - data preparation and EDA of agronomic data
+- **src/Data/Farms_timeseries** - timeseries for different plantations
+- **src/Data/RFECV_results** - results of RFECV in various csv files
+- **src/Models** - containing most important content where various models were tested
+- **src/Models/Results** - results of all tested models (**IMPORTANT** It does not contain sensitive data so the predictions made)
+
+Important scripts:
+- **src/BC_solutions/Databases.py** - script handling connection with specific SQL Server
+- **src/Data/data_loader.py** - script handling all imports
+- **src/Data/pods_EDA.ipynb** - EDA of agronomic data
+- **src/Data/feature_selection.ipynb** - feature engineering and feature selection via RFECV
+- **src/Models/TimeSeriesForecasters.py** - this module provides classes and utilities for the purpose of preparing data for various types of models
+as well as for training, optimizing and evaluating them
+- **src/Models/classes_test.ipynb** - testing various models using the TimeSeriesForecasters.py module and collected data
+- **src/Models/ARIMA_VS_CatBoost.ipynb** - comparison of auto-arima (predicting aggregated data) versus CatBoost (predicting on granularity of single plantations)
+
+## Python version and dependencies
+
+- Python 3.9
+- Jupyter Notebook
+- Libraries and dependencies specified in `venv39ML.yaml`
